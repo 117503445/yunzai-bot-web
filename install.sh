@@ -8,3 +8,10 @@ pnpm install -P
 pnpm add image-size -w
 
 # node app
+
+# ./Yunzai-Bot/config/config/redis.yaml
+
+# yay -S google-chrome --noconfirm
+# pacman -S 
+
+ pacman -S chromium --noconfirm
