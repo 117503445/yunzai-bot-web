@@ -8,7 +8,7 @@ services:
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project
-      - ../..:/workspaces:cached
+      - ./..:/workspaces:cached
       
     stdin_open: true # docker run -i
     tty: true        # docker run -t

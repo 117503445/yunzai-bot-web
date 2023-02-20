@@ -136,3 +136,5 @@ Yunzai-Bot-backup
 
 node_modules
 yunzai-client-ws
+
+.pnpm-store
