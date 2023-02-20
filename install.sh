@@ -6,12 +6,17 @@ rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 cd Yunzai-Bot
 pnpm install -P
 pnpm add image-size -w
-pnpm install ws -w
+
+# pnpm install ws -w
+./Yunzai-Bot/config/config/redis.yaml
+
 # node app
 
-# ./Yunzai-Bot/config/config/redis.yaml
 
 # yay -S google-chrome --noconfirm
 # pacman -S 
 
 pacman -S chromium wqy-microhei --noconfirm
+
+pnpm install fastify -w
+pnpm install uuid -w

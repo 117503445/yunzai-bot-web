@@ -138,3 +138,6 @@ node_modules
 yunzai-client-ws
 
 .pnpm-store
+
+egg-demo
+fastify-demo
