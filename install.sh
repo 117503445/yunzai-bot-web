@@ -6,7 +6,7 @@ rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 cd Yunzai-Bot
 pnpm install -P
 pnpm add image-size -w
-
+pnpm install ws -w
 # node app
 
 # ./Yunzai-Bot/config/config/redis.yaml
@@ -14,4 +14,4 @@ pnpm add image-size -w
 # yay -S google-chrome --noconfirm
 # pacman -S 
 
- pacman -S chromium --noconfirm
+pacman -S chromium wqy-microhei --noconfirm

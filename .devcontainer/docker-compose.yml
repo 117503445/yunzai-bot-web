@@ -37,3 +37,7 @@ services:
       start_period: 10s
       interval: 5s
       timeout: 1s
+  p3x-redis-ui:
+    image: patrikx3/p3x-redis-ui
+    volumes:
+      - ./config/p3x-redis-ui/settings:/settings

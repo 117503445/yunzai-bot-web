@@ -4,6 +4,6 @@ FROM 117503445/dev-front
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-RUN yay -S google-chrome --noconfirm
+RUN pacman -Syu chromium wqy-microhei --noconfirm
 
 ENTRYPOINT [ "zsh" ]
