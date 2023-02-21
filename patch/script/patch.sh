@@ -12,7 +12,7 @@ rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 cd $PROJECT_PATH/Yunzai-Bot
 mkdir ./data
 pnpm install -P
-pnpm add image-size fastify @fastify/static uuid -w
+pnpm add image-size fastify @fastify/static @fastify/cors uuid -w
 
 cd $PROJECT_PATH
 cp $PROJECT_PATH/patch/template/redis.yaml $PROJECT_PATH/Yunzai-Bot/config/config/redis.yaml
