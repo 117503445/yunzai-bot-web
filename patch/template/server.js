@@ -5,6 +5,10 @@ import Fastify from 'fastify'
 import * as fs from 'fs/promises'
 import { v4 as uuidv4 } from 'uuid';
 
+import * as fstatic from '@fastify/static'
+import path from 'path';
+
+
 fs.mkdir('./data/server', { recursive: true })
 
 global.Bot = {}
@@ -12,6 +16,11 @@ await PluginsLoader.load()
 
 const fastify = Fastify({
     logger: true
+})
+const __dirname = path.resolve();
+fastify.register(fstatic, {
+    root: __dirname + '/data/server',
+    prefix: '/static/',
 })
 
 fastify.post('/api/chat', async (request, reply) => {
@@ -31,9 +40,10 @@ fastify.post('/api/chat', async (request, reply) => {
             const filePath = `./data/server/${fileName}`
             fs.writeFile(filePath, msg.file, "binary")
             data.push({ 'type': 'image', 'value': fileName })
-        } else {
-            // msg is string
+        } else if (typeof msg == 'string') {
             data.push({ 'type': 'text', 'value': msg })
+        } else {
+            logger.error(`unsupported msg: ${msg}`)
         }
     }
 

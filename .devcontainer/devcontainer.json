@@ -5,7 +5,7 @@
 	// "appPort": [ "1117:1117/udp" ],
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "dev",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"workspaceFolder": "/workspaces",
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
