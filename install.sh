@@ -5,18 +5,21 @@ rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 
 cd Yunzai-Bot
 pnpm install -P
-pnpm add image-size -w
+pnpm add image-size fastify uuid -w
 
-# pnpm install ws -w
 ./Yunzai-Bot/config/config/redis.yaml
 
-# node app
 
-
-# yay -S google-chrome --noconfirm
-# pacman -S 
+# await createQQ()
 
 pacman -S chromium wqy-microhei --noconfirm
 
-pnpm install fastify -w
-pnpm install uuid -w
+# pnpm install fastify -w
+# pnpm install uuid -w
+
+mkdir ./data
+
+node ./lib/tools/server.js
+
+
+./patch/script/patch.sh
