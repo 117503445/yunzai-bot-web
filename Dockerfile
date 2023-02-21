@@ -4,4 +4,6 @@ COPY patch patch
 
 RUN ./patch/script/patch.sh
 
-ENTRYPOINT [ "node", "./Yunzai-Bot/lib/tools/server.js" ]
+WORKDIR /root/project/Yunzai-Bot
+
+ENTRYPOINT [ "node", "./lib/tools/server.js" ]

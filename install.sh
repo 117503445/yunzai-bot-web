@@ -23,3 +23,5 @@ node ./lib/tools/server.js
 
 
 ./patch/script/patch.sh
+
+TODO mini image

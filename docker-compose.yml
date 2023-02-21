@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  yunzai-web:
+    # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
+    image: 117503445/yunzai-web
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      redis:
+        condition: service_healthy
+  redis:
+    # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
+    image: redis:alpine
+    restart: unless-stopped
+    volumes:
+      - ./_data/redis/data:/data
+      - ./_data/redis/logs:/logs
+    healthcheck:
+      test: [ "CMD", "redis-cli", "PING" ]
+      start_period: 10s
+      interval: 5s
+      timeout: 1s
