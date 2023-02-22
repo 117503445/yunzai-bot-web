@@ -25,3 +25,8 @@ node ./lib/tools/server.js
 ./patch/script/patch.sh
 
 TODO mini image
+
+pacman -Syu docker-buildx 
+docker buildx install
+
+docker build -t 117503445/yunzai-web .

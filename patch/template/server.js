@@ -28,6 +28,11 @@ fastify.register(fstatic, {
     prefix: '/static/',
 })
 
+fastify.get('/', async (request, reply) => {
+    reply.type('application/json').code(200)
+    return { 'code': 0, 'msg': "success", 'data': "This is yunzai-web :)" }
+})
+
 fastify.post('/api/chat', async (request, reply) => {
     reply.type('application/json').code(200)
 
@@ -57,6 +62,6 @@ fastify.post('/api/chat', async (request, reply) => {
     return { 'code': 0, 'msg': "success", 'data': data }
 })
 
-fastify.listen({ port: 8080 }, (err, address) => {
+fastify.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
     if (err) throw err
 })

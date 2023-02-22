@@ -1,12 +1,13 @@
 set -evx
 
-pacman -S chromium wqy-microhei --noconfirm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+source /root/.bashrc
 
 PROJECT_PATH=$PWD
 
 git clone --depth=1 -b main https://gitee.com/Le-niao/Yunzai-Bot.git
 rm -rf ./Yunzai-Bot/.git
-git clone --depth=1 https://github.com/yoimiya-kokomi/miao-plugin.git ./Yunzai-Bot/plugins/miao-plugin
+git clone --depth=1 https://gitee.com/yoimiya-kokomi/miao-plugin.git ./Yunzai-Bot/plugins/miao-plugin
 rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 
 cd $PROJECT_PATH/Yunzai-Bot
