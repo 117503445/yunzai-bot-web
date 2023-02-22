@@ -1,4 +1,4 @@
-export interface Token {
+export interface ResponseMessage {
     type: string;
     value: string;
 }

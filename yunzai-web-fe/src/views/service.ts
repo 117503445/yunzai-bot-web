@@ -1,7 +1,8 @@
 import request from "@/utils/request";
 
 import type { CommonResponse } from "@/utils/request";
-import type { Token } from "./data";
+// import type { Message } from "../models/data";
+import type { ResponseMessage } from "./data";
 
 export async function postChat(chat: string) {
     const response = (
@@ -47,5 +48,5 @@ export async function postChat(chat: string) {
         })
     ).data as CommonResponse;
 
-    return response.data as Array<Token>;
+    return response.data as Array<ResponseMessage>;
 }
