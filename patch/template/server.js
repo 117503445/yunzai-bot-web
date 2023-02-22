@@ -1,13 +1,13 @@
-import '../config/init.js'
-import PluginsLoader from '../plugins/loader.js'
-import Fastify from 'fastify'
-
+import path from 'path';
 import * as fs from 'fs/promises'
 import { v4 as uuidv4 } from 'uuid';
 
-import * as fstatic from '@fastify/static'
-import path from 'path';
+import '../config/init.js'
+import PluginsLoader from '../plugins/loader.js'
 
+import Fastify from 'fastify'
+import * as fstatic from '@fastify/static'
+import cors from '@fastify/cors'
 
 fs.mkdir('./data/server', { recursive: true })
 
@@ -17,6 +17,11 @@ await PluginsLoader.load()
 const fastify = Fastify({
     logger: true
 })
+
+fastify.register(cors, {
+    origin: true,
+})
+
 const __dirname = path.resolve();
 fastify.register(fstatic, {
     root: __dirname + '/data/server',
