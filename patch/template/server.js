@@ -9,7 +9,7 @@ import Fastify from 'fastify'
 import * as fstatic from '@fastify/static'
 import cors from '@fastify/cors'
 
-fs.mkdir('./data/server', { recursive: true })
+fs.mkdir('./data/server/images', { recursive: true })
 
 global.Bot = {}
 await PluginsLoader.load()
@@ -25,12 +25,7 @@ fastify.register(cors, {
 const __dirname = path.resolve();
 fastify.register(fstatic, {
     root: __dirname + '/data/server',
-    prefix: '/static/',
-})
-
-fastify.get('/', async (request, reply) => {
-    reply.type('application/json').code(200)
-    return { 'code': 0, 'msg': "success", 'data': "This is yunzai-web :)" }
+    prefix: '/',
 })
 
 fastify.post('/api/chat', async (request, reply) => {
@@ -47,7 +42,7 @@ fastify.post('/api/chat', async (request, reply) => {
         logger.info(`reply 回复内容 ${msg}`)
         if (msg.type == 'image') {
             const fileName = `${uuidv4()}.jpg`
-            const filePath = `./data/server/${fileName}`
+            const filePath = `./data/server/images/${fileName}`
             fs.writeFile(filePath, msg.file, "binary")
             data.push({ 'type': 'image', 'value': fileName })
         } else if (typeof msg == 'string') {
