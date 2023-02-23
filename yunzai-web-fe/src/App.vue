@@ -78,5 +78,6 @@ const menuOptions: MenuOption[] = [
       </n-layout>
     </n-layout>
   </n-space>
+</template>
 
-<!-- <n-menu :options="menuOptions" /> --></template>
+<style></style>
