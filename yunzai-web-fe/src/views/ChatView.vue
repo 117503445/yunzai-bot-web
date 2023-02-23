@@ -1,8 +1,8 @@
 <template>
   <!-- <div id="chat-box"> -->
-    <n-scrollbar style="max-height: 120px">
+  <!--   <n-scrollbar style="max-height: 360px">
       <Chat v-for="item in cardItems" :msg="item" />
-    </n-scrollbar>
+    </n-scrollbar>-->
   <!-- </div> -->
 
 

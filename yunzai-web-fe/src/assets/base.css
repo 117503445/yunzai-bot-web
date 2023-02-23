@@ -1,4 +1,5 @@
 /* color palette from <https://github.com/vuejs/theme> */
+/* 
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
@@ -21,7 +22,6 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
-/* semantic color variables for this project */
 :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
@@ -55,9 +55,11 @@
 *::after {
   box-sizing: border-box;
   margin: 0;
-  position: relative;
+  position: relative; 
   font-weight: normal;
-}
+} 
+
+position: relative; cause menu fault
 
 body {
   min-height: 100vh;
@@ -72,3 +74,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+*/

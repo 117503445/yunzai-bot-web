@@ -69,3 +69,13 @@ npm run test:e2e -- --debug
 ```sh
 npm run lint
 ```
+
+
+npm i -D @vicons/fluent
+npm i -D @vicons/ionicons4
+pnpm i -D @vicons/ionicons5
+npm i -D @vicons/antd
+npm i -D @vicons/material
+npm i -D @vicons/fa # font awesome
+npm i -D @vicons/tabler
+npm i -D @vicons/carbon
