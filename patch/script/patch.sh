@@ -11,6 +11,7 @@ git clone --depth=1 https://gitee.com/yoimiya-kokomi/miao-plugin.git ./Yunzai-Bo
 rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 
 cd $PROJECT_PATH/yunzai-web-fe
+pnpm i
 pnpm build-only
 
 cd $PROJECT_PATH/Yunzai-Bot
