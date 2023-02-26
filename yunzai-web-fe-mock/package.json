@@ -1,0 +1,20 @@
+{
+  "name": "yunzai-web-fe-mock",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.2.0",
+    "@fastify/static": "^6.9.0",
+    "fastify": "^4.13.0",
+    "uuid": "^9.0.0"
+  }
+}
