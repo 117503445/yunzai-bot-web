@@ -1,17 +1,35 @@
-import { fileURLToPath, URL } from "node:url";
+import path from 'path'
+import { defineConfig, loadEnv } from 'vite'
+import vue from '@vitejs/plugin-vue'
 
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+export default defineConfig((env) => {
+  const viteEnv = loadEnv(env.mode, process.cwd()) as unknown as ImportMetaEnv
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+  return {
+    resolve: {
+      alias: {
+        '@': path.resolve(process.cwd(), 'src'),
+      },
     },
-  },
-  server: {
-    port: 3000
+    plugins: [vue()],
+    server: {
+      host: '0.0.0.0',
+      port: 1002,
+      open: false,
+      proxy: {
+        '/api': {
+          target: viteEnv.VITE_APP_API_BASE_URL,
+          changeOrigin: true, // 允许跨域
+          rewrite: path => path.replace('/api/', '/'),
+        },
+      },
+    },
+    build: {
+      reportCompressedSize: false,
+      sourcemap: false,
+      commonjsOptions: {
+        ignoreTryCatch: false,
+      },
+    },
   }
-});
+})

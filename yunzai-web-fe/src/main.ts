@@ -1,15 +1,21 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
+import { createApp } from 'vue'
+import App from './App.vue'
+import { setupDirectives } from './directives'
+import { setupAssets } from '@/plugins'
+import { setupStore } from '@/store'
+import { setupRouter } from '@/router'
 
-import App from "./App.vue";
-import router from "./router";
-import naive from "naive-ui";
-import "./assets/main.css";
+async function bootstrap() {
+  const app = createApp(App)
+  setupAssets()
 
-const app = createApp(App);
+  setupStore(app)
 
-app.use(createPinia());
-app.use(router);
-app.use(naive);
+  setupDirectives(app)
 
-app.mount("#app");
+  await setupRouter(app)
+
+  app.mount('#app')
+}
+
+bootstrap()

@@ -1,41 +1,31 @@
-import { createRouter, createWebHistory, createWebHashHistory  } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import ChatView from "../views/ChatView.vue";
+import type { App } from 'vue'
+import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import { ChatLayout } from '@/views/chat/layout'
 
-const router = createRouter({
-  // history: createWebHistory(import.meta.env.BASE_URL),
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/',
+    name: 'Root',
+    component: ChatLayout,
+    redirect: '/chat',
+    children: [
+      {
+        path: '/chat/:uuid?',
+        name: 'Chat',
+        component: () => import('@/views/chat/index.vue'),
+      },
+    ],
+  },
+]
+
+export const router = createRouter({
   history: createWebHashHistory(),
-  routes: [
-    // {
-    //   path: "/",
-    //   name: "home",
-    //   component: HomeView,
-    // },
-    {
-      path: "/",
-      name: "home",
-      component: () => import("../views/HomeView.vue"),
-    },
-    {
-      path: "/chat",
-      name: "chat",
-      component: () => import("../views/ChatView.vue"),
-      // component: ChatView,
-    },
-    {
-      path: "/setting",
-      name: "setting",
-      component: () => import("../views/SettingView.vue"),
-    },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
-    },
-  ],
-});
+  routes,
+  scrollBehavior: () => ({ left: 0, top: 0 }),
+})
 
-export default router;
+export async function setupRouter(app: App) {
+  app.use(router)
+  await router.isReady()
+}
