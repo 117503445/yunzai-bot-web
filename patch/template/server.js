@@ -80,9 +80,9 @@ fastify.post('/api/chat-process', async (request, reply) => {
             const fileName = `${uuidv4()}.jpg`
             const filePath = `./data/server/images/${fileName}`
             fs.writeFile(filePath, msg.file, "binary")
-            data += `![img](images/${fileName})\\n`
+            data += `![img](images/${fileName})\n`
         } else if (typeof msg == 'string') {
-            data += `${msg}\\n`
+            data += `${msg}\n`
         } else {
             logger.error(`unsupported msg: ${msg}`)
         }
@@ -90,8 +90,10 @@ fastify.post('/api/chat-process', async (request, reply) => {
 
     await PluginsLoader.deal(e)
 
-    return `{}
-{"text":"${data}"}`
+    let response ="{}\n"+ JSON.stringify({"text": data})
+    
+    logger.info(response)
+    return response
 })
 
 fastify.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
