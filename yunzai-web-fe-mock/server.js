@@ -22,7 +22,7 @@ fastify.register(fstatic, {
     prefix: '/',
 })
 
-fastify.post('/api/chat', async (request, reply) => {
+fastify.post('/chat-process', async (request, reply) => {
     reply.type('application/json').code(200)
 
     let e = request.body
@@ -31,9 +31,11 @@ fastify.post('/api/chat', async (request, reply) => {
 
     data = [{ 'type': 'text', 'value': 'your uid' }]
 
-    return { 'code': 0, 'msg': "success", 'data': data }
+    // return {"role":"assistant","id":"cmpl-6pTTfBQfIODHnOy6JXgWvQtUQEoqe","parentMessageId":"f4e0df4b-fbac-4d97-bb65-5fcbc6ac6b72","conversationId":"6a4f5063-f0a9-4f42-85f5-1af1341e63f8","text":"\n你好，有什么可以帮助你？","detail":{"id":"cmpl-6pTTfBQfIODHnOy6JXgWvQtUQEoqe","object":"text_completion","created":1677726059,"choices":[{"text":"？","index":0,"logprobs":null,"finish_reason":null}],"model":"text-davinci-003"}}
+    return `{}
+    {"text":"hello ![img](https://sunlanchang.github.io/images/biaozhunfenleiIPdizhi.png)"}`
 })
 
-fastify.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
+fastify.listen({ port: 3002, host: '0.0.0.0' }, (err, address) => {
     if (err) throw err
 })
