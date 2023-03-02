@@ -32,6 +32,7 @@ fastify.post('/api/chat-process', async (request, reply) => {
     reply.type('application/json').code(200)
 
     let prompt = request.body.prompt
+    logger.info('prompt = ', prompt)
     let e = {
         "test": true,
         "self_id": 10000,
@@ -72,10 +73,10 @@ fastify.post('/api/chat-process', async (request, reply) => {
     let data = ""
 
     e.group.sendMsg = (msg) => {
-        logger.info(`group 回复内容 ${msg}`)
+        logger.info(`group 回复内容 = ${msg}`)
     }
     e.reply = async (msg) => {
-        logger.info(`reply 回复内容 ${msg}`)
+        logger.info(`reply 回复内容 = ${msg}`)
         if (msg.type == 'image') {
             const fileName = `${uuidv4()}.jpg`
             const filePath = `./data/server/images/${fileName}`
@@ -92,7 +93,7 @@ fastify.post('/api/chat-process', async (request, reply) => {
 
     let response ="{}\n"+ JSON.stringify({"text": data})
     
-    logger.info(response)
+    logger.info('response = ', response)
     return response
 })
 
