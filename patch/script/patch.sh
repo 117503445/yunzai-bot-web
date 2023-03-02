@@ -10,9 +10,9 @@ rm -rf ./Yunzai-Bot/.git
 git clone --depth=1 https://gitee.com/yoimiya-kokomi/miao-plugin.git ./Yunzai-Bot/plugins/miao-plugin
 rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 
-cd $PROJECT_PATH/yunzai-web-fe
-pnpm i
-pnpm build
+# cd $PROJECT_PATH/yunzai-web-fe
+# pnpm i
+# pnpm build
 
 cd $PROJECT_PATH/Yunzai-Bot
 pnpm install -P
@@ -28,4 +28,4 @@ cp $PROJECT_PATH/Yunzai-Bot/lib/config/init.js $PROJECT_PATH/Yunzai-Bot/lib/conf
 sed -i 's/await createQQ()/\/\/await createQQ()/g' $PROJECT_PATH/Yunzai-Bot/lib/config/init.js
 
 
-cp -r $PROJECT_PATH/yunzai-web-fe/dist $PROJECT_PATH/Yunzai-Bot/data/server
+# cp -r $PROJECT_PATH/yunzai-web-fe/dist $PROJECT_PATH/Yunzai-Bot/data/server
