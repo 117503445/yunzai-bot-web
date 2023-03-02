@@ -63,8 +63,11 @@ watch(
         <hr>
         <p>
           此项目开源于
-          <a class="text-blue-600" href="https://github.com/Chanzhaoyu/chatgpt-web" target="_blank">Github</a>
+          <a class="text-blue-600" href="https://github.com/117503445/yunzai-bot-web" target="_blank">Github</a>
           如果你觉得此项目对你有帮助，请帮我点个 Star，谢谢！
+        </p>
+        <p>
+          感谢 <a class="text-blue-600" href="https://gitee.com/Le-niao/Yunzai-Bot.git" target="_blank">Yunzai-Bot</a>, <a class="text-blue-600" href="https://github.com/yoimiya-kokomi/miao-plugin.git" target="_blank">miao-plugin</a>, <a class="text-blue-600" href="https://github.com/Chanzhaoyu/chatgpt-web" target="_blank">chatgpt-web</a> 
         </p>
         <hr>
         <p>API方式：{{ config?.apiModel ?? '-' }}</p>

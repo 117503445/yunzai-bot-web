@@ -315,8 +315,8 @@ function handleStop() {
 
 const placeholder = computed(() => {
   if (isMobile.value)
-    return 'Ask me anything...'
-  return 'Ask me anything... (Shift + Enter = line break)'
+    return '#帮助 #喵喵帮助 ...'
+  return '#帮助 #喵喵帮助 ... (Shift + Enter = line break)'
 })
 
 const buttonDisabled = computed(() => {
