@@ -12,7 +12,7 @@ rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 
 cd $PROJECT_PATH/yunzai-web-fe
 pnpm i
-pnpm build-only
+pnpm build
 
 cd $PROJECT_PATH/Yunzai-Bot
 pnpm install -P

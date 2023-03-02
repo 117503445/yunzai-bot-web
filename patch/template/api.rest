@@ -37,3 +37,10 @@ Content-Type: application/json
     "friend": {},
     "message_id": "JzHU0DACliIAAAD3RzTh1WBOIC48"
 }
+
+###
+
+POST http://localhost:8080/api/chat-process
+Content-Type: application/json
+
+{"prompt":"#uid","options":{}}

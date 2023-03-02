@@ -28,12 +28,48 @@ fastify.register(fstatic, {
     prefix: '/',
 })
 
-fastify.post('/api/chat', async (request, reply) => {
+fastify.post('/api/chat-process', async (request, reply) => {
     reply.type('application/json').code(200)
 
-    let e = request.body
+    let prompt = request.body.prompt
+    let e = {
+        "test": true,
+        "self_id": 10000,
+        "time": 1676913595310,
+        "post_type": "message",
+        "message_type": "friend",
+        "sub_type": "normal",
+        "group_id": 826198224,
+        "group_name": "测试群",
+        "user_id": 805475874,
+        "anonymous": null,
+        "message": [
+            {
+                "type": "text",
+                "text": prompt
+            }
+        ],
+        "raw_message": "#uid",
+        "font": "微软雅黑",
+        "sender": {
+            "user_id": 805475874,
+            "nickname": "测试",
+            "card": "this_is_card",
+            "sex": "male",
+            "age": 0,
+            "area": "unknown",
+            "level": 2,
+            "role": "owner",
+            "title": ""
+        },
+        "group": {
+            "mute_left": 0
+        },
+        "friend": {},
+        "message_id": "JzHU0DACliIAAAD3RzTh1WBOIC48"
+    }
 
-    let data = []
+    let data = ""
 
     e.group.sendMsg = (msg) => {
         logger.info(`group 回复内容 ${msg}`)
@@ -44,9 +80,9 @@ fastify.post('/api/chat', async (request, reply) => {
             const fileName = `${uuidv4()}.jpg`
             const filePath = `./data/server/images/${fileName}`
             fs.writeFile(filePath, msg.file, "binary")
-            data.push({ 'type': 'image', 'value': fileName })
+            data += `![img](images/${fileName})\\n`
         } else if (typeof msg == 'string') {
-            data.push({ 'type': 'text', 'value': msg })
+            data += `${msg}\\n`
         } else {
             logger.error(`unsupported msg: ${msg}`)
         }
@@ -54,7 +90,8 @@ fastify.post('/api/chat', async (request, reply) => {
 
     await PluginsLoader.deal(e)
 
-    return { 'code': 0, 'msg': "success", 'data': data }
+    return `{}
+{"text":"${data}"}`
 })
 
 fastify.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
