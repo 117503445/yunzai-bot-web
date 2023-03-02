@@ -91,6 +91,13 @@ fastify.post('/api/chat-process', async (request, reply) => {
 
     await PluginsLoader.deal(e)
 
+    if(data == ""){
+        await new Promise(r => setTimeout(r, 2000)); // sleep 2s
+        if(data == ""){
+            data = "机器人似乎没有给出回复 :("
+        }
+    }
+
     let response ="{}\n"+ JSON.stringify({"text": data})
     
     logger.info('response = ', response)
