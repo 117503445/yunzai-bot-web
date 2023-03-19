@@ -4,7 +4,7 @@
 
 Yunzai-Bot 是查询原神游戏信息的 QQ 机器人，但是 QQ 登录比较麻烦（小号、扫码、要求和设备同局域网..）。对于单纯只想查询原神面板信息的用户来说，或许并不想处理 QQ 登录的问题。
 
-**Yunzai-Bot-Web** 提供了一种更轻量的部署方案！通过解除 Yunzai-Bot 对 QQ 的依赖，**Yunzai-Bot-Web** 可以进行零手工配置的部署，一行 `docker compose up -d` 即可开始使用～
+**Yunzai-Bot-Web** 提供了一种更轻量的部署方案！通过解除 Yunzai-Bot 对 QQ 的依赖，**Yunzai-Bot-Web** 可以进行零手工配置的部署，一行 `docker-compose up -d` 即可开始使用～
 
 ![demo](./assets/demo.png)
 
@@ -56,7 +56,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && d
 在此文件夹下运行命令
 
 ```sh
-docker compose up -d
+docker-compose up -d
 ```
 
 访问 <http://localhost:8080>
