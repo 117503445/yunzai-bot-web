@@ -89,6 +89,23 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 
 ![bind-ck](./assets/bind-ck.png)
 
+### 安装插件
+
+此项目已自带 miao-plugin，但是也可以很方便的安装第三方插件
+
+以 [call_of_seven_saints](https://gitee.com/huangshx2001/call_of_seven_saints) 插件为例
+
+先下载插件 `git clone https://gitee.com/huangshx2001/call_of_seven_saints.git ./data/plugins/call_of_seven_saints/`
+
+然后将宿主机的 `./data/plugins/call_of_seven_saints` 挂载到容器中
+
+```yaml
+    volumes:
+      - ./data/plugins/call_of_seven_saints:/root/Yunzai-Bot/plugins/call_of_seven_saints
+```
+
+再执行 `docker compose up -d` 即可
+
 ## 致谢
 
 [Yunzai-Bot](https://gitee.com/Le-niao/Yunzai-Bot.git)
