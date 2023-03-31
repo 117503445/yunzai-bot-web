@@ -15,7 +15,7 @@ rm -rf ./Yunzai-Bot/plugins/miao-plugin/.git
 # pnpm build
 
 cd $PROJECT_PATH/Yunzai-Bot
-pnpm install -P
+pnpm install
 pnpm add image-size fastify @fastify/static @fastify/cors uuid -w
 mkdir ./data
 
