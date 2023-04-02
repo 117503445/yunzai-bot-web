@@ -24,6 +24,7 @@ cp $PROJECT_PATH/patch/template/redis.yaml $PROJECT_PATH/Yunzai-Bot/config/confi
 
 cp $PROJECT_PATH/Yunzai-Bot/config/default_config/other.yaml $PROJECT_PATH/Yunzai-Bot/config/config/other.yaml
 sed -i 's/masterQQ:/masterQQ: "805475874"/g' $PROJECT_PATH/Yunzai-Bot/config/config/other.yaml
+sed -i 's/cfg.masterQQ.includes(Number(e.user_id))/cfg.masterQQ.includes(String(e.user_id))/g' $PROJECT_PATH/Yunzai-Bot/lib/plugins/loader.js
 cp $PROJECT_PATH/patch/template/server.js $PROJECT_PATH/Yunzai-Bot/lib/tools/server.js
 cp $PROJECT_PATH/patch/template/api.rest $PROJECT_PATH/Yunzai-Bot/lib/tools/api.rest
 
