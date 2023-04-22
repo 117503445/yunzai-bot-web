@@ -106,6 +106,10 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 
 再执行 `docker compose up -d` 即可
 
+### 脚本开发
+
+可以编写脚本，进行一些自动化操作。例如 [yunzai-web-downloader](./script/yunzai-web-downloader/) 下载指定角色的面板、圣遗物，就不需要手动在 Web 面板上一个个问过来了。
+
 ## 致谢
 
 [Yunzai-Bot](https://gitee.com/Le-niao/Yunzai-Bot.git)

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "yunzai-web-downloader"
+version = "0.1.0"
+description = ""
+authors = ["117503445 <t117503445@gmail.com>"]
+readme = "README.md"
+packages = [{include = "yunzai_web_downloader"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+htutil = "^3.0.0"
+requests = "^2.28.2"
+
+
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
