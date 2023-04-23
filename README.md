@@ -87,6 +87,39 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 
 ![bind-ck](./assets/bind-ck.png)
 
+### 多用户
+
+默认情况下 **Yunzai-Bot-Web** 只支持单个原神用户。可以通过本节的配置，开启安全的多原神用户功能。
+
+准备配置文件 `./config/config.json`
+
+以下为配置文件示例。
+
+```json
+{
+    "multiUser": true,
+    "users": {
+        "user1": {
+            "password": "pass1",
+            "qq": 805475874
+        },
+        "user2": {
+            "password": "pass2",
+            "qq": 805475875
+        }
+    }
+}
+```
+
+定义了 2 个用户，分别是
+
+- 用户名 user1 密码 pass1 QQ号 805475874
+- 用户名 user2 密码 pass2 QQ号 805475875
+
+QQ号字段不要求和真实 QQ 号一致，只要互相不同即可。其中 `805475874` 是个 magic number, 表示 `user1` 是管理员。
+
+目前采用了 Basic Auth 方案，建议配置 HTTPS 保障安全性。
+
 ### 安装插件
 
 此项目已自带 miao-plugin，但是也可以很方便的安装第三方插件

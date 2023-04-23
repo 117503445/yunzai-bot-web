@@ -1,0 +1,13 @@
+{
+    "multiUser": true,
+    "users": {
+        "user1": {
+            "password": "pass1",
+            "qq": 805475874
+        },
+        "user2": {
+            "password": "pass2",
+            "qq": 805475875
+        }
+    }
+}

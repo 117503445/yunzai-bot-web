@@ -32,6 +32,11 @@ docker buildx install
 docker build -t 117503445/yunzai-web .
 
 chatgpt-web 2.8.3 42e320fe359a18ba374bfc68da1b777473d0e6e0
-https://github.com/Chanzhaoyu/chatgpt-web
+
 
 # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
+
+git clone https://github.com/Chanzhaoyu/chatgpt-web.git
+# rm -r 
+cd chatgpt-web
+pnpm install && pnpm build
