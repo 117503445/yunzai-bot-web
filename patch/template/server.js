@@ -9,7 +9,7 @@ import Fastify from 'fastify'
 import * as fstatic from '@fastify/static'
 import cors from '@fastify/cors'
 
-fs.mkdir('./web-data/server/images', { recursive: true })
+fs.mkdir('./web-data/images', { recursive: true })
 
 global.Bot = {}
 await PluginsLoader.load()
@@ -24,7 +24,7 @@ fastify.register(cors, {
 
 const __dirname = path.resolve();
 fastify.register(fstatic, {
-    root: __dirname + '/web-data/server',
+    root: __dirname + '/web-data',
     prefix: '/',
 })
 
@@ -79,7 +79,7 @@ fastify.post('/api/chat-process', async (request, reply) => {
         logger.info(`reply 回复内容 = ${msg}`)
         if (msg.type == 'image') {
             const fileName = `${uuidv4()}.jpg`
-            const filePath = `./web-data/server/images/${fileName}`
+            const filePath = `./web-data/images/${fileName}`
             fs.writeFile(filePath, msg.file, "binary")
             data += `![img](images/${fileName})\n`
         } else if (typeof msg == 'string') {
@@ -91,15 +91,15 @@ fastify.post('/api/chat-process', async (request, reply) => {
 
     await PluginsLoader.deal(e)
 
-    if(data == ""){
+    if (data == "") {
         await new Promise(r => setTimeout(r, 2000)); // sleep 2s
-        if(data == ""){
+        if (data == "") {
             data = "机器人似乎没有给出回复 :("
         }
     }
 
-    let response ="{}\n"+ JSON.stringify({"text": data})
-    
+    let response = "{}\n" + JSON.stringify({ "text": data })
+
     logger.info('response = ', response)
     return response
 })

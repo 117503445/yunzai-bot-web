@@ -16,7 +16,7 @@ COPY patch patch
 # COPY yunzai-web-fe yunzai-web-fe
 RUN ./patch/script/patch.sh
 
-COPY --from=fe-builder /app/dist ./Yunzai-Bot/web-data/server
+COPY --from=fe-builder /app/dist ./Yunzai-Bot/web-data
 
 WORKDIR /root/Yunzai-Bot
 ENTRYPOINT [ "node", "./lib/tools/server.js" ]

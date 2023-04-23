@@ -12,7 +12,7 @@ services:
         condition: service_healthy
     volumes:
       - ./data/yunzai-web/data:/root/Yunzai-Bot/data
-      - ./data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/server/images
+      - ./data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/images
   redis:
     # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
     image: redis:alpine
