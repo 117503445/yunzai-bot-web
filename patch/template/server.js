@@ -48,13 +48,20 @@ fastify.register(fstatic, {
 const authenticate = { realm: 'YunzaiBotWeb' }
 fastify.register(basicAuth, { validate, authenticate })
 function validate(username, password, req, reply, done) {
-    if (!multiUser || users[username]["password"] === password) {
-        if (multiUser) {
-            req.headers["qq"] = users[username]["qq"]
-        }
+    if (!multiUser) {
         done()
     } else {
-        done(new Error("auth failed"))
+        let user = users[username]
+        if (!user) {
+            done(new Error("auth failed, user not found"))
+        } else {
+            if (user["password"] === password) {
+                req.headers["qq"] = users[username]["qq"]
+                done()
+            } else {
+                done(new Error("auth failed, wrong password"))
+            }
+        }
     }
 }
 fastify.after(() => {
