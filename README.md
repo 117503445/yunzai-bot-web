@@ -27,18 +27,16 @@ services:
     depends_on:
       redis:
         condition: service_healthy
-    # healthcheck:
-    #   test: [ "CMD", "curl", "localhost:8080" ]
-    #   start_period: 10s
-    #   interval: 5s
-    #   timeout: 1s
+    volumes:
+      - ./data/yunzai-web/data:/root/Yunzai-Bot/data
+      - ./data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/server/images
   redis:
     # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
     image: redis:alpine
     restart: unless-stopped
     volumes:
-      - ./_data/redis/data:/data
-      - ./_data/redis/logs:/logs
+      - ./data/redis/data:/data
+      - ./data/redis/logs:/logs
     healthcheck:
       test: [ "CMD", "redis-cli", "PING" ]
       start_period: 10s
