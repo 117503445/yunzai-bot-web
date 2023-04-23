@@ -116,7 +116,14 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 - 用户名 user1 密码 pass1 QQ号 805475874
 - 用户名 user2 密码 pass2 QQ号 805475875
 
-QQ号字段不要求和真实 QQ 号一致，只要互相不同即可。其中 `805475874` 是个 magic number, 表示 `user1` 是管理员。
+QQ号字段不要求和真实 QQ 号一致，只要不同用户的 QQ 字段互相不同即可。其中 `805475874` 是个 magic number, 表示 `user1` 是管理员。
+
+然后挂载配置文件即可
+
+```yaml
+    volumes:
+      - ./config/config.json:/root/Yunzai-Bot/web-data/config.json
+```
 
 目前采用了 Basic Auth 方案，建议配置 HTTPS 保障安全性。
 
