@@ -79,6 +79,14 @@ Enjoy :)
 
 ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进行某些信息查询时需要用到 ck。
 
+#### 油猴脚本[推荐]
+
+可以通过油猴脚本，便捷的将 ck 发送至 Yunzai-Web。
+
+详情见 <https://github.com/117503445/yunzai-bot-web/tree/master/script/miyoushe-token-sender>
+
+#### 手动
+
 在电脑上，登录 [米游社](https://www.miyoushe.com/ys)，打开浏览器的开发者工具，抓包，得到 cookie
 
 ![get-ck](./assets/get-ck.png)
