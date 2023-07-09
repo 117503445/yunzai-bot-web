@@ -124,6 +124,19 @@ fastify.after(() => {
             if (msg.type == 'image') {
                 const fileName = `${uuidv4()}.jpg`
                 const filePath = `./web-data/images/${fileName}`
+                
+                if (msg.file instanceof Buffer) {
+                    fs.writeFile(filePath, msg.file, "binary")
+                } else if (typeof msg.file == 'string') {
+                    if (msg.file.startsWith('file://')) {
+                        fs.writeFile(filePath, await fs.readFile(msg.file.replace(/^file:\/\//, '')), "binary")
+                    } else if (msg.file.startsWith('base64://')) {
+                        fs.writeFile(filePath, Buffer.from(msg.file.replace(/^base64:\/\//, 'base64'), ), "binary")
+                    }
+                } else {
+                    logger.error(`unsupported image type: ${typeof msg.file}`)
+                }
+                
                 fs.writeFile(filePath, msg.file, "binary")
                 data += `![img](images/${fileName})\n`
             } else if (typeof msg == 'string') {
