@@ -156,6 +156,10 @@ QQ号字段不要求和真实 QQ 号一致，只要不同用户的 QQ 字段互�
 
 可以编写脚本，进行一些自动化操作。例如 [yunzai-web-downloader](./script/yunzai-web-downloader/) 下载指定角色的面板、圣遗物，就不需要手动在 Web 面板上一个个问过来了。
 
+### 调试
+
+当 `yunzai-web` 出现非预期的故障时，需要进行调试。具体方法参考 [调试方法](./doc/dev.md)。
+
 ## 致谢
 
 [Yunzai-Bot](https://gitee.com/Le-niao/Yunzai-Bot.git)

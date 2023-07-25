@@ -129,15 +129,18 @@ fastify.after(() => {
                     fs.writeFile(filePath, msg.file, "binary")
                 } else if (typeof msg.file == 'string') {
                     if (msg.file.startsWith('file://')) {
-                        fs.writeFile(filePath, await fs.readFile(msg.file.replace(/^file:\/\//, '')), "binary")
+                        // msg.file example file://./data/strategy/1/胡桃.jpg
+                        const localFilePath = msg.file.replace(/^file:\/\//, '')
+                        fs.copyFile(localFilePath, filePath)
                     } else if (msg.file.startsWith('base64://')) {
                         fs.writeFile(filePath, Buffer.from(msg.file.replace(/^base64:\/\//, 'base64'), ), "binary")
+                    } else {
+                        logger.error(`unsupported string file: ${msg.file}`)
                     }
                 } else {
                     logger.error(`unsupported image type: ${typeof msg.file}`)
                 }
                 
-                fs.writeFile(filePath, msg.file, "binary")
                 data += `![img](images/${fileName})\n`
             } else if (typeof msg == 'string') {
                 data += `${msg}\n`
