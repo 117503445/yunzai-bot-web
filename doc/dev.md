@@ -13,5 +13,6 @@ attach 到容器中，修改代码
 启动服务
 
 ```sh
+cd Yunzai-Bot
 node ./lib/tools/server.js
 ```
