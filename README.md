@@ -152,6 +152,33 @@ QQ号字段不要求和真实 QQ 号一致，只要不同用户的 QQ 字段互�
 
 再执行 `docker compose up -d` 即可
 
+### 更新镜像
+
+当 `Yunzai-Bot` 或 `miao-plugin` 更新时，需要通过本节描述的方法进行更新。
+
+1. 确定远端存在更新的镜像
+
+   Yunzai-Bot 自带的更新是不能用的，只能通过拉取新镜像的方式进行更新。
+
+   - 默认 tag (latest) 只有在本 repo 开发者验证功能可用后，才会进行更新。
+   - 每夜 tag (nightly) 每天都会自动构建一次，会包含构建时最新的插件版本。但是不确保功能正常。
+
+2. 拉取镜像
+
+```sh
+docker compose pull
+
+# or
+
+docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
+```
+
+3. 以新镜像启动容器
+
+```sh
+docker compose up -d
+```
+
 ### 脚本开发
 
 可以编写脚本，进行一些自动化操作。例如 [yunzai-web-downloader](./script/yunzai-web-downloader/) 下载指定角色的面板、圣遗物，就不需要手动在 Web 面板上一个个问过来了。
