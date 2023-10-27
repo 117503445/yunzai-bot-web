@@ -82,7 +82,7 @@ fastify.after(() => {
             "self_id": 10000,
             "time": 1676913595310,
             "post_type": "message",
-            "message_type": "friend",
+            "message_type": "private",
             "sub_type": "normal",
             "group_id": 826198224,
             "group_name": "测试群",
