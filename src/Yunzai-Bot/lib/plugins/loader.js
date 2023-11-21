@@ -416,7 +416,7 @@ class PluginsLoader {
       e.logText = `[${e.group_name}(${e.sender.card})]`
     }
 
-    if (e.user_id && cfg.masterQQ.includes(Number(e.user_id))) {
+    if (e.user_id && cfg.masterQQ.includes(String(e.user_id))) {
       e.isMaster = true
     }
 

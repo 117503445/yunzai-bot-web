@@ -38,7 +38,7 @@ async function checkInit () {
   }
 
   /** 检查qq.yaml */
-  await createQQ()
+  // await createQQ()
 
   /** 日志设置 */
   setLog()
