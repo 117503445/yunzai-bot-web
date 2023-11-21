@@ -15,13 +15,11 @@ services:
       - ./data/yunzai-web/be-images:/workspace/Yunzai-Bot/web-data/images # images of backend
 
       # - ./config/config.json:/workspace/Yunzai-Bot/config.json # config of backend
-      - ./config/plugins:/workspace/Yunzai-Bot/user_plugins
-
+      - ./config/plugins:/workspace/Yunzai-Bot/user_plugins # plugins of `Yunzai-Bot`
+      
       - ../../src/Yunzai-Bot/docker-entrypoint.py:/workspace/Yunzai-Bot/docker-entrypoint.py
 
       - ./dev-data/vsc:/root/.vscode-server # vscode-server cache
-
-
   redis:
     # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
     image: redis:alpine

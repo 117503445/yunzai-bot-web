@@ -19,8 +19,8 @@ version: '3'
 
 services:
   yunzai-web:
-    # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
-    image: 117503445/yunzai-web
+    image: registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web
+    container_name: yunzai-web
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -28,11 +28,15 @@ services:
       redis:
         condition: service_healthy
     volumes:
-      - ./data/yunzai-web/data:/root/Yunzai-Bot/data
-      - ./data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/images
+      - ./data/yunzai-web/yunzai-bot-data:/workspace/Yunzai-Bot/data # data of `Yunzai-Bot`
+      - ./data/yunzai-web/be-images:/workspace/Yunzai-Bot/web-data/images # images of backend
+
+      - ./config/plugins:/workspace/Yunzai-Bot/user_plugins # plugins of `Yunzai-Bot`
+      # - ./config/config.json:/workspace/Yunzai-Bot/config.json # config of backend, unconment this line when config.json is provided
+
+      - ./dev-data/vsc:/root/.vscode-server # vscode-server cache
   redis:
-    # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
-    image: redis:alpine
+    image: registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine
     restart: unless-stopped
     volumes:
       - ./data/redis/data:/data
@@ -42,13 +46,6 @@ services:
       start_period: 10s
       interval: 5s
       timeout: 1s
-```
-
-[可选] 使用阿里云容器服务拉取镜像，速度更快
-
-```sh
-docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
-docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
 ```
 
 在此文件夹下运行命令
@@ -62,6 +59,40 @@ docker compose up -d
 Enjoy :)
 
 ## 使用技巧
+
+### 插件管理
+
+以 [miao-plugin](https://gitee.com/yoimiya-kokomi/miao-plugin) 插件为例
+
+#### 插件安装
+
+先将插件下载至 `./config/plugins/` 目录
+
+```sh
+git clone --depth=1 https://gitee.com/yoimiya-kokomi/miao-plugin.git ./config/plugins/miao-plugin
+```
+
+重启容器，应用插件更新
+
+```sh
+docker compose up -d
+```
+
+#### 插件升级
+
+拉取更改
+
+```sh
+cd ./config/plugins/miao-plugin
+git pull
+```
+
+重启容器，应用插件更新
+
+```sh
+docker compose up -d
+```
+
 
 ### 帮助
 
@@ -105,15 +136,15 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 
 ```json
 {
-    "multiUser": true,
+    "multiUser": false,
     "users": {
         "user1": {
             "password": "pass1",
-            "qq": 805475874
+            "qq": "10000000"
         },
         "user2": {
             "password": "pass2",
-            "qq": 805475875
+            "qq": "10000001"
         }
     }
 }
@@ -121,61 +152,26 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 
 定义了 2 个用户，分别是
 
-- 用户名 user1 密码 pass1 QQ号 805475874
-- 用户名 user2 密码 pass2 QQ号 805475875
+- 用户名 user1 密码 pass1 QQ号 10000000
+- 用户名 user2 密码 pass2 QQ号 10000001
 
-QQ号字段不要求和真实 QQ 号一致，只要不同用户的 QQ 字段互相不同即可。其中 `805475874` 是个 magic number, 表示 `user1` 是管理员。
+QQ号字段不要求和真实 QQ 号一致，只要不同用户的 QQ 字段互相不同即可。其中 `10000000` 是 magic number, 表示 `user1` 是管理员。因为 `10000001` 不是 `10000000`, 所以 `user2` 是普通用户。
 
 然后挂载配置文件即可
 
 ```yaml
     volumes:
-      - ./config/config.json:/root/Yunzai-Bot/web-data/config.json
+      - ./config/config.json:/workspace/Yunzai-Bot/config.json
 ```
 
-目前采用了 Basic Auth 方案，建议配置 HTTPS 保障安全性。
+目前采用了 Basic Auth 方案，建议在网关上配置 HTTPS 以保障安全性。
 
-### 安装插件
+### 镜像更新
 
-此项目已自带 miao-plugin，但是也可以很方便的安装第三方插件
-
-以 [call_of_seven_saints](https://gitee.com/huangshx2001/call_of_seven_saints) 插件为例
-
-先下载插件 `git clone https://gitee.com/huangshx2001/call_of_seven_saints.git ./data/plugins/call_of_seven_saints/`
-
-然后将宿主机的 `./data/plugins/call_of_seven_saints` 挂载到容器中
-
-```yaml
-    volumes:
-      - ./data/plugins/call_of_seven_saints:/root/Yunzai-Bot/plugins/call_of_seven_saints
-```
-
-再执行 `docker compose up -d` 即可
-
-### 更新镜像
-
-当 `Yunzai-Bot` 或 `miao-plugin` 更新时，需要通过本节描述的方法进行更新。
-
-1. 确定远端存在更新的镜像
-
-   Yunzai-Bot 自带的更新是不能用的，只能通过拉取新镜像的方式进行更新。
-
-   - 默认 tag (latest) 只有在本 repo 开发者验证功能可用后，才会进行更新。
-   - 每夜 tag (nightly) 每天都会自动构建一次，会包含构建时最新的插件版本。但是不确保功能正常。
-
-2. 拉取镜像
+当 `Yunzai-Bot` 或 `yunzai-bot-web` 更新时，需要通过本节描述的方法进行镜像更新。其中 `Yunzai-Bot` 基本已经停更了；`yunzai-bot-web` 修 bug 或者增添新功能(比较少见) 时会更新。
 
 ```sh
 docker compose pull
-
-# or
-
-docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
-```
-
-3. 以新镜像启动容器
-
-```sh
 docker compose up -d
 ```
 
