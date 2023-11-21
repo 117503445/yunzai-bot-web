@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 set -evx
 
 curl -fsSL https://get.pnpm.io/install.sh | sh -

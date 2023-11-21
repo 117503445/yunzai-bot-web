@@ -26,4 +26,6 @@ docker build -t 117503445/yunzai-bot .
 docker push 117503445/yunzai-bot
 docker tag 117503445/yunzai-bot registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web
 docker push registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web
+
+docker compose -f doc/docker/docker-compose.yml up -d
 ```

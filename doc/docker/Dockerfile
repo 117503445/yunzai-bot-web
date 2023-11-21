@@ -1,0 +1,1 @@
+FROM gcr.io/distroless/nodejs20-debian12
