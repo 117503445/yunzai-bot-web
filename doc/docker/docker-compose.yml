@@ -6,11 +6,21 @@ services:
       context: ../../
       dockerfile: doc/docker/Dockerfile
     restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
     # ports:
     #   - 8080:8080
     volumes:
-      - ./dev-data/yunzai-web/data:/root/Yunzai-Bot/data
-      - ./dev-data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/images
+      - ./data/yunzai-web/yunzai-bot-data:/workspace/Yunzai-Bot/data # data of `Yunzai-Bot`
+      - ./data/yunzai-web/be-images:/workspace/Yunzai-Bot/web-data/images # images of backend
+
+      # - ./config/config.json:/workspace/Yunzai-Bot/config.json # config of backend
+      - ./config/plugins:/workspace/Yunzai-Bot/user_plugins
+
+      - ../../src/Yunzai-Bot/docker-entrypoint.py:/workspace/Yunzai-Bot/docker-entrypoint.py
+
+
   redis:
     # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
     image: redis:alpine

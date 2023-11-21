@@ -30,4 +30,4 @@ COPY --from=fe-builder /workspace/yunzai-web-fe/dist /workspace/Yunzai-Bot/web-d
 WORKDIR /workspace/Yunzai-Bot
 RUN pnpm install && pnpm add image-size fastify @fastify/static @fastify/cors @fastify/basic-auth uuid -w && mkdir ./data
 EXPOSE 8080
-ENTRYPOINT [ "node", "./lib/tools/server.js" ]
+ENTRYPOINT [ "./docker-entrypoint.py" ]
