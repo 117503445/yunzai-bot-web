@@ -1,0 +1,26 @@
+name: docker test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Modify Build File
+        run: sed -i "s|# build|build|g" ./docker-compose.yaml 
+             && sed -i "s|gitee|github|g" ./docker/Dockerfile
+
+      - name: Build Docker Images
+        run: docker compose up -d --build
+
+      - name: Use Default Config
+        run: docker cp docker/qq.yaml yunzai-bot:/app/Yunzai-Bot/config/config
+
+      - name: Run Test Script
+        run: docker exec yunzai-bot npm --prefix=/app/Yunzai-Bot run test
