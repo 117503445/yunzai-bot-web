@@ -17,7 +17,7 @@ let multiUser = false
 let users = {}
 
 try {
-    const text = await fs.readFile('./web-data/config.json');
+    const text = await fs.readFile('./config.json');
     const cfg = JSON.parse(text);
     multiUser = cfg['multiUser']
     users = cfg['users']
@@ -69,7 +69,7 @@ fastify.after(() => {
 
 
     fastify.post('/api/chat-process', async (request, reply) => {
-        let qq = 805475874
+        let qq = "10000000"
         if (request.headers['qq']) {
             qq = request.headers['qq']
         }
@@ -165,8 +165,6 @@ fastify.after(() => {
 
         return response
     })
-
-
 })
 
 fastify.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {

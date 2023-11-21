@@ -56,5 +56,4 @@ RUN git clone --depth=1 --branch main https://gitee.com/Le-niao/Yunzai-Bot.git /
 COPY --from=resource /res/entrypoint.sh /app/Yunzai-Bot/entrypoint.sh
 
 WORKDIR /app/Yunzai-Bot
-
 ENTRYPOINT ["/app/Yunzai-Bot/entrypoint.sh"]

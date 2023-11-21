@@ -3,11 +3,11 @@ version: '3'
 services:
   yunzai-web-dev:
     build:
-      context: ./doc/docker
-      dockerfile: Dockerfile
+      context: ../../
+      dockerfile: doc/docker/Dockerfile
     restart: unless-stopped
-    ports:
-      - 8080:8080
+    # ports:
+    #   - 8080:8080
     volumes:
       - ./dev-data/yunzai-web/data:/root/Yunzai-Bot/data
       - ./dev-data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/images
