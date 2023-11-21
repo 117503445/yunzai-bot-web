@@ -127,10 +127,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-Yunzai-Bot
-Yunzai-Bot-*
-Yunzai-Bot-backup
-
 .devcontainer/_data
 
 node_modules
