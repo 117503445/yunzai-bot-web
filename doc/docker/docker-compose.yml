@@ -8,8 +8,8 @@ services:
     depends_on:
       redis:
         condition: service_healthy
-    # ports:
-    #   - 8080:8080
+    ports:
+      - 8080:8080
     volumes:
       - ./data/yunzai-web/yunzai-bot-data:/workspace/Yunzai-Bot/data # data of `Yunzai-Bot`
       - ./data/yunzai-web/be-images:/workspace/Yunzai-Bot/web-data/images # images of backend

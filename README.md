@@ -6,7 +6,7 @@ Yunzai-Bot 是查询原神游戏信息的 QQ 机器人，但是 QQ 登录比较�
 
 **Yunzai-Bot-Web** 提供了一种更轻量的部署方案！通过解除 Yunzai-Bot 对 QQ 的依赖，**Yunzai-Bot-Web** 可以进行零手工配置的部署，一行 `docker compose up -d` 即可开始使用～
 
-![demo](./assets/demo.png)
+![demo](./doc/assets/demo.png)
 
 ## 快速上手
 
@@ -69,11 +69,11 @@ Enjoy :)
 
 输入 `#喵喵帮助` 查看喵喵插件的帮助
 
-![help](./assets/help.png)
+![help](./doc/assets/help.png)
 
 ### 绑定 uid
 
-![bind-uid](./assets/bind-uid.png)
+![bind-uid](./doc/assets/bind-uid.png)
 
 ### 绑定 ck
 
@@ -89,11 +89,11 @@ ck 指的是 [米游社](https://www.miyoushe.com/ys) 的 cookie。Yunzai 在进
 
 在电脑上，登录 [米游社](https://www.miyoushe.com/ys)，打开浏览器的开发者工具，抓包，得到 cookie
 
-![get-ck](./assets/get-ck.png)
+![get-ck](./doc/assets/get-ck.png)
 
 然后将 cookie 直接发送即可完成绑定
 
-![bind-ck](./assets/bind-ck.png)
+![bind-ck](./doc/assets/bind-ck.png)
 
 ### 多用户
 
