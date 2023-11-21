@@ -12,12 +12,14 @@ def cp_plugins():
             exit(1)
         else:
             # copy
-            subprocess.call(["cp", "-r", "./user_plugins/" + plugin, "./plugins"])
-            print("copy plugin %s to ./plugins" % plugin)
+            # subprocess.call(["cp", "-r", "./user_plugins/" + plugin, "./plugins"])
+            subprocess.run(["cp", "-r", "./user_plugins/" + plugin, "./plugins"])
+            print("copy plugin %s to ./plugins" % plugin, flush=True)
             
 
 def run_server():
-    subprocess.call(["node", "./lib/tools/server.js"])
+    print("run server", flush=True)
+    subprocess.run(["node", "./lib/tools/server.js"])
 
 
 def main():

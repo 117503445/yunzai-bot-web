@@ -5,7 +5,6 @@ services:
     build:
       context: ../../
       dockerfile: doc/docker/Dockerfile
-    restart: unless-stopped
     depends_on:
       redis:
         condition: service_healthy
@@ -20,11 +19,12 @@ services:
 
       - ../../src/Yunzai-Bot/docker-entrypoint.py:/workspace/Yunzai-Bot/docker-entrypoint.py
 
+      - ./dev-data/vsc:/root/.vscode-server # vscode-server cache
+
 
   redis:
     # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
     image: redis:alpine
-    restart: unless-stopped
     volumes:
       - ./data/redis/data:/data
       - ./data/redis/logs:/logs

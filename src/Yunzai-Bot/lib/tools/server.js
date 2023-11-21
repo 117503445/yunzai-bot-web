@@ -46,7 +46,6 @@ fastify.register(fstatic, {
 
 
 const authenticate = { realm: 'YunzaiBotWeb' }
-fastify.register(basicAuth, { validate, authenticate })
 function validate(username, password, req, reply, done) {
     if (!multiUser) {
         done()
@@ -64,9 +63,13 @@ function validate(username, password, req, reply, done) {
         }
     }
 }
-fastify.after(() => {
-    fastify.addHook('onRequest', fastify.basicAuth)
+fastify.register(basicAuth, { validate, authenticate })
 
+
+fastify.after(() => {
+    if (multiUser) {
+        fastify.addHook('onRequest', fastify.basicAuth)
+    }
 
     fastify.post('/api/chat-process', async (request, reply) => {
         let qq = "10000000"
@@ -124,7 +127,7 @@ fastify.after(() => {
             if (msg.type == 'image') {
                 const fileName = `${uuidv4()}.jpg`
                 const filePath = `./web-data/images/${fileName}`
-                
+
                 if (msg.file instanceof Buffer) {
                     fs.writeFile(filePath, msg.file, "binary")
                 } else if (typeof msg.file == 'string') {
@@ -133,14 +136,14 @@ fastify.after(() => {
                         const localFilePath = msg.file.replace(/^file:\/\//, '')
                         fs.copyFile(localFilePath, filePath)
                     } else if (msg.file.startsWith('base64://')) {
-                        fs.writeFile(filePath, Buffer.from(msg.file.replace(/^base64:\/\//, 'base64'), ), "binary")
+                        fs.writeFile(filePath, Buffer.from(msg.file.replace(/^base64:\/\//, 'base64'),), "binary")
                     } else {
                         logger.error(`unsupported string file: ${msg.file}`)
                     }
                 } else {
                     logger.error(`unsupported image type: ${typeof msg.file}`)
                 }
-                
+
                 data += `![img](images/${fileName})\n`
             } else if (typeof msg == 'string') {
                 data += `${msg}\n`
