@@ -75,7 +75,7 @@ git clone --depth=1 https://gitee.com/yoimiya-kokomi/miao-plugin.git ./config/pl
 重启容器，应用插件更新
 
 ```sh
-docker compose up -d
+docker compose down && docker compose up -d
 ```
 
 #### 插件升级
@@ -90,7 +90,7 @@ git pull
 重启容器，应用插件更新
 
 ```sh
-docker compose up -d
+docker compose down && docker compose up -d
 ```
 
 
