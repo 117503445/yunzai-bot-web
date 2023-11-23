@@ -2,8 +2,8 @@ version: '3'
 
 services:
   yunzai-web:
-    # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web 117503445/yunzai-web
-    image: 117503445/yunzai-web
+    image: registry.cn-hangzhou.aliyuncs.com/117503445-mirror/yunzai-web
+    container_name: yunzai-web
     restart: unless-stopped
     ports:
       - 8080:8080
@@ -11,11 +11,15 @@ services:
       redis:
         condition: service_healthy
     volumes:
-      - ./data/yunzai-web/data:/root/Yunzai-Bot/data
-      - ./data/yunzai-web/web-data/images:/root/Yunzai-Bot/web-data/images
+      - ./data/yunzai-web/yunzai-bot-data:/workspace/Yunzai-Bot/data # data of `Yunzai-Bot`
+      - ./data/yunzai-web/be-images:/workspace/Yunzai-Bot/web-data/images # images of backend
+
+      - ./config/plugins:/workspace/Yunzai-Bot/user_plugins # plugins of `Yunzai-Bot`
+      # - ./config/config.json:/workspace/Yunzai-Bot/config.json # config of backend, unconment this line when config.json is provided
+
+      - ./dev-data/vsc:/root/.vscode-server # vscode-server cache
   redis:
-    # docker pull registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine && docker image tag registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine redis:alpine
-    image: redis:alpine
+    image: registry.cn-hangzhou.aliyuncs.com/117503445-mirror/redis:alpine
     restart: unless-stopped
     volumes:
       - ./data/redis/data:/data
