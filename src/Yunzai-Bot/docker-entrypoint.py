@@ -3,18 +3,24 @@
 import subprocess
 import os
 
-# copy every plugin in ./user_plugins to ./plugins, like ./user_plugins/miao -> ./plugins/miao
-def cp_plugins():
-    # first check whether plugin has existed in ./plugins
+# soft link every plugin in ./user_plugins to ./plugins, like ./user_plugins/miao -> ./plugins/miao
+def link_plugins():
+    buildin_plugins = [
+        "example", "genshin", "other", "system"
+    ]
+
+    # when container restart, remove all plugins in ./plugins except buildin plugins
+    for plugin in os.listdir("./plugins"):
+        if plugin not in buildin_plugins:
+            subprocess.run(["rm", "-rf", "./plugins/" + plugin])
+
     for plugin in os.listdir("./user_plugins"):
-        if os.path.exists("./plugins/" + plugin):
-            print("plugin %s has existed in ./plugins" % plugin)
+        if plugin in buildin_plugins:
+            print(f"plugin {plugin} is buildin, please rename it", flush=True)
             exit(1)
-        else:
-            # copy
-            # subprocess.call(["cp", "-r", "./user_plugins/" + plugin, "./plugins"])
-            subprocess.run(["cp", "-r", "./user_plugins/" + plugin, "./plugins"])
-            print("copy plugin %s to ./plugins" % plugin, flush=True)
+
+        subprocess.run(["ln", "-s", "../user_plugins/" + plugin, "./plugins/" + plugin])
+        print("copy plugin %s to ./plugins" % plugin, flush=True)
             
 
 def run_server():
@@ -23,7 +29,7 @@ def run_server():
 
 
 def main():
-    cp_plugins()
+    link_plugins()
     run_server()
 
 
