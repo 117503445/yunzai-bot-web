@@ -1,0 +1,8 @@
+# 您对外显示的域名或IP地址
+Host: 127.0.0.1
+
+# 为/register添加?key=114514校验，留空则不校验
+Key: ''
+
+# HTML页脚标签内容
+Copyright: 'Copyright GT-Manual'

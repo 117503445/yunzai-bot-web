@@ -1,0 +1,16 @@
+# server地址，一般不用修改
+HOST: '0.0.0.0'
+
+# http端口
+HTTP_PORT: 8081
+# https端口
+HTTPS_PORT: 443
+
+# 使用https
+HTTPS: false
+# http重定向https
+HTTP_TO_HTTPS: true
+# ssl证书crt文件路径
+CA_CERTIFICATE: './config/SSL/certificate.crt'
+# ssl证书key文件路径
+CA_PRIVATE: './config/SSL/private.key'

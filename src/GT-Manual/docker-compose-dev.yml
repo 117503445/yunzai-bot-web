@@ -1,0 +1,16 @@
+services:
+  gt-manaual:
+    image: node:lts-slim
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./:/workspace/GT-Manual
+
+    working_dir: /workspace/GT-Manual
+    entrypoint: bash
+
+    stdin_open: true
+    tty: true

@@ -189,4 +189,6 @@ docker compose up -d
 
 [miao-plugin](https://github.com/yoimiya-kokomi/miao-plugin.git)
 
+[GT-Manual](https://gitee.com/QQ1146638442/GT-Manual)
+
 [chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web)
