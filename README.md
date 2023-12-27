@@ -166,6 +166,12 @@ QQ号字段不要求和真实 QQ 号一致，只要不同用户的 QQ 字段互�
 
 目前采用了 Basic Auth 方案，建议在网关上配置 HTTPS 以保障安全性。
 
+### 米游社验证
+
+当使用 `#体力` 等米游社功能，出现米游社验证错误时，代表当前账号被米游社风控系统盯上了。可以下载胡桃工具箱，登录自己账号后，点击 实时便笺 - 验证当前用户与角色，就能解决米游社账号的风控问题了。
+
+可以参考 [胡桃工具箱文档](https://hut.ao/zh/advanced/exceptions.html#%E7%8A%B6%E6%80%81-1034-%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5)
+
 ### 镜像更新
 
 当 `Yunzai-Bot` 或 `yunzai-bot-web` 更新时，需要通过本节描述的方法进行镜像更新。其中 `Yunzai-Bot` 基本已经停更了；`yunzai-bot-web` 修 bug 或者增添新功能(比较少见) 时会更新。
@@ -185,8 +191,10 @@ docker compose up -d
 
 ## 致谢
 
-[Yunzai-Bot](https://gitee.com/Le-niao/Yunzai-Bot.git)
+[Yunzai-Bot](https://gitee.com/Le-niao/Yunzai-Bot.git) 提供机器人框架
 
-[miao-plugin](https://github.com/yoimiya-kokomi/miao-plugin.git)
+[miao-plugin](https://github.com/yoimiya-kokomi/miao-plugin.git) 提供高质量的原神信息查询插件
 
-[chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web)
+[chatgpt-web](https://github.com/Chanzhaoyu/chatgpt-web) 提供前端的基础框架
+
+[胡桃工具箱](https://hut.ao/zh/) 提供米游社验证解决方案
