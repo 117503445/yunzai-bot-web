@@ -1,7 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 import Help from '../model/help.js'
-import md5 from 'md5'
+import sha256 from 'crypto-js/sha256'
 
 let helpData = {
   md5: '',
@@ -33,7 +33,7 @@ export class help extends plugin {
   }
 
   async cache (data) {
-    let tmp = md5(JSON.stringify(data))
+    let tmp = sha256(JSON.stringify(data)).toString()
     if (helpData.md5 == tmp) return helpData.img
 
     helpData.img = await puppeteer.screenshot('help', data)

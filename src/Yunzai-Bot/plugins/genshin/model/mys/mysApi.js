@@ -2,6 +2,7 @@ import md5 from 'md5'
 import lodash from 'lodash'
 import fetch from 'node-fetch'
 import cfg from '../../../../lib/config/config.js'
+import crypto from 'crypto' // Importing the crypto module
 
 let HttpsProxyAgent = ''
 
@@ -305,7 +306,7 @@ export default class MysApi {
     }
     let t = Math.round(new Date().getTime() / 1000)
     let r = Math.floor(Math.random() * 900000 + 100000)
-    let DS = md5(`salt=${n}&t=${t}&r=${r}&b=${b}&q=${q}`)
+    let DS = crypto.createHash('sha256').update(`salt=${n}&t=${t}&r=${r}&b=${b}&q=${q}`).digest('hex') // Updated to use SHA-256
     return `${t},${r},${DS}`
   }
 
@@ -315,7 +316,7 @@ export default class MysApi {
     const n = 'Qqx8cyv7kuyD8fTw11SmvXSFHp7iZD29'
     const t = Math.round(new Date().getTime() / 1000)
     const r = lodash.sampleSize('abcdefghijklmnopqrstuvwxyz0123456789', 6).join('')
-    const DS = md5(`salt=${n}&t=${t}&r=${r}`)
+    const DS = crypto.createHash('sha256').update(`salt=${n}&t=${t}&r=${r}`).digest('hex') // Updated to use SHA-256
     return `${t},${r},${DS}`
   }
 
