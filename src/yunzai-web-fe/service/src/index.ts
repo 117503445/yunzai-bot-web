@@ -1,10 +1,12 @@
 import express from 'express'
+import helmet from 'helmet' // Import helmet for security headers
 import type { ChatContext, ChatMessage } from './chatgpt'
 import { chatConfig, chatReply, chatReplyProcess } from './chatgpt'
 
 const app = express()
 const router = express.Router()
 
+app.use(helmet()) // Use helmet to disable the X-Powered-By header
 app.use(express.static('public'))
 app.use(express.json())
 
@@ -22,7 +24,7 @@ router.post('/chat', async (req, res) => {
     res.send(response)
   }
   catch (error) {
-    res.send(error)
+    res.status(500).send({ error: 'An error occurred' }) // Sanitize error message
   }
 })
 
@@ -38,7 +40,7 @@ router.post('/chat-process', async (req, res) => {
     })
   }
   catch (error) {
-    res.write(JSON.stringify(error))
+    res.write(JSON.stringify({ error: 'An error occurred' })) // Sanitize error message
   }
   finally {
     res.end()
@@ -51,7 +53,7 @@ router.post('/config', async (req, res) => {
     res.send(response)
   }
   catch (error) {
-    res.send(error)
+    res.status(500).send({ error: 'An error occurred' }) // Sanitize error message
   }
 })
 

@@ -95,11 +95,17 @@ export default class Ledger extends base {
 
     let color = ['#73a9c6', '#d56565', '#70b2b4', '#bd9a5a', '#739970', '#7a6da7', '#597ea0']
     for (let i in ledgerInfo.month_data.group_by) {
-      ledgerInfo.month_data.group_by[i].color = color[ledgerInfo.month_data.group_by[i].action_id]
+      let actionId = ledgerInfo.month_data.group_by[i].action_id;
+      if (typeof actionId === 'number' && actionId >= 0 && actionId < color.length) {
+        ledgerInfo.month_data.group_by[i].color = color[actionId]
+      }
     }
     ledgerInfo.color = []
     ledgerInfo.month_data.group_by.forEach((item) => {
-      ledgerInfo.color.push(['#73a9c6', '#d56565', '#70b2b4', '#bd9a5a', '#739970', '#7a6da7', '#597ea0'][item.action_id])
+      let actionId = item.action_id;
+      if (typeof actionId === 'number' && actionId >= 0 && actionId < color.length) {
+        ledgerInfo.color.push(color[actionId])
+      }
     })
     ledgerInfo.group_by = JSON.stringify(ledgerInfo.month_data.group_by)
     ledgerInfo.color = JSON.stringify(ledgerInfo.color)
